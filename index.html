@@ -2,12 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Etch-A-Sketch</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- controls -->
+      <div id="controls-container">
+        <div class="slidecontainer">
+          <input type="range" min="4" max="64" value="4" class="slider" id="grid-slider">
+        </div>
+        <div id="grid-slider-value"></div>
+      </div>
+      <!-- etch-a-sketch -->
+      <div id="grid-container">
+        test
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

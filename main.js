@@ -1,24 +1,47 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const dom = {};
 
-setupCounter(document.querySelector('#counter'))
+const setupDOM = () => {
+  dom.slider = document.getElementById("grid-slider");
+  dom.sliderValue = document.getElementById("grid-slider-value");
+  dom.sketchContainer = document.getElementById("grid-container");
+
+}
+
+const updateGrid = (size) => {
+  dom.sketchContainer.innerHTML = "";
+  dom.sketchContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  dom.sketchContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  
+  const totalCells = size * size;
+  for (let i = 0; i < totalCells; i++ ) {
+    const cell = document.createElement("div");
+    cell.classList.add('grid-item');
+    dom.sketchContainer.appendChild(cell);
+  }
+};
+
+
+
+
+
+setupDOM();
+
+dom.sliderValue.innerHTML = dom.slider.value;
+
+
+dom.slider.oninput = function() {
+  dom.sliderValue.innerHTML = this.value;
+
+}
+
+dom.slider.onmouseup = () => {
+  updateGrid(dom.slider.value);
+}
+
+
+console.log(dom.slider.value)
+
+
+updateGrid(dom.slider.value)
